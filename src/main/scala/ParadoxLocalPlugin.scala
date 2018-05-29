@@ -34,9 +34,10 @@ object ParadoxLocalPlugin extends AutoPlugin {
   override def trigger = AllRequirements
 
   override def projectConfigurations = Seq(Local)
-  override def projectSettings = Seq(
-    ParadoxPlugin.paradoxSettings(Local) ++ propertiesRemapSettings ++ forwarderSettings
-  ).flatMap(inConfig(Local))
+  override def projectSettings =
+    Seq(
+      ParadoxPlugin.paradoxSettings(Local) ++ forwarderSettings ++ propertiesRemapSettings
+    ).flatMap(inConfig(Local))
 
   val propertiesRemapSettings: Seq[Setting[_]] = Seq(
     paradoxProperties in Local ++= Map(
@@ -44,8 +45,9 @@ object ParadoxLocalPlugin extends AutoPlugin {
       paradoxLocalApiKey.value -> relativeRebase(
         (ThisBuild / baseDirectory).value,
         (Compile / paradox / target).value
-      )(paradoxLocalApiDir.value).get)
+      )(paradoxLocalApiDir.value).get
     )
+  )
 
   val forwarderSettings: Seq[Setting[_]] = Seq(
     sourceDirectory := (sourceDirectory in Compile).value,
@@ -54,9 +56,9 @@ object ParadoxLocalPlugin extends AutoPlugin {
   )
 
   /**
-    * A path mapper that pairs a descendent of `commonBase` with a relative path from `newBase`.
-    * For example, if `commonBase = /common/` and `newBase = /common/a`, then `/common/b/c` gets paired with `../b/c`.
-    */
+   * A path mapper that pairs a descendent of `commonBase` with a relative path from `newBase`.
+   * For example, if `commonBase = /common/` and `newBase = /common/a`, then `/common/b/c` gets paired with `../b/c`.
+   */
   private def relativeRebase(commonBase: File, newBase: File): Path.PathMap = {
     val pathDiff = newBase.getAbsolutePath.replaceFirst(commonBase.getAbsolutePath, "")
     val levelDiff = pathDiff.split("/").tail.map(_ => "../").mkString("")
