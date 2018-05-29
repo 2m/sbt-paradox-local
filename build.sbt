@@ -21,7 +21,7 @@ developers += Developer("contributors",
                         "https://gitter.im/lightbend/paradox",
                         url("https://github.com/2m/sbt-paradox-local/graphs/contributors"))
 bintrayOrganization := Some("2m")
-bintrayRepository := (if (isSnapshot.value) "snapshots" else "maven")
+bintrayRepository := (if (isSnapshot.value) "sbt-plugin-snapshots" else "sbt-plugins")
 organizationName := "https://github.com/2m/sbt-paradox-local/graphs/contributors"
 startYear := Some(2018)
 
