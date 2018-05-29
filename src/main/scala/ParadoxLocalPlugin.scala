@@ -43,16 +43,16 @@ object ParadoxLocalPlugin extends AutoPlugin {
     paradoxProperties in Local ++= Map(
       // point API doc links to locally generated API docs
       paradoxLocalApiKey.value -> relativeRebase(
-        (ThisBuild / baseDirectory).value,
-        (Compile / paradox / target).value
+        (ThisBuild/baseDirectory).value,
+        (Compile/paradox/target).value
       )(paradoxLocalApiDir.value).get
     )
   )
 
   val forwarderSettings: Seq[Setting[_]] = Seq(
-    sourceDirectory := (sourceDirectory in Compile).value,
-    paradoxGroups := (paradoxGroups in Compile).value,
-    paradoxProperties := (paradoxProperties in Compile).value
+    sourceDirectory := (Compile/sourceDirectory).value,
+    paradoxGroups := (Compile/paradoxGroups).value,
+    paradoxProperties := (Compile/paradoxProperties ).value
   )
 
   /**
