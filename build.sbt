@@ -4,7 +4,7 @@ description := "Generate paradox documentation with local API links"
 
 libraryDependencies ++= Seq(
 )
-addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.3.3")
+addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.4.3")
 
 sbtPlugin := true
 scriptedLaunchOpts += ("-Dproject.version=" + version.value)
