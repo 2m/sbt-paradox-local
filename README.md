@@ -9,7 +9,7 @@ This plugin adds a `Local` sbt configuration to the [sbt-paradox](https://github
 Add this to your sbt build plugins in `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("lt.dvim.paradox" % "sbt-paradox-local" % "0.1")
+addSbtPlugin("lt.dvim.paradox" % "sbt-paradox-local" % "0.2")
 ```
 
 Set values for the following sbt keys:
